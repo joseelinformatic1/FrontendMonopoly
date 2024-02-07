@@ -1,0 +1,428 @@
+/* General options */
+*{
+    margin: 0;
+    font-size: 0.90em;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+	background-image: url("https://i.pinimg.com/originals/a4/73/cd/a473cda6c0a58d9b2e2bc2292d16c334.jpg");
+	background-position: center;
+	background-repeat: repeat;
+	background-size: 100px;
+}
+
+#board {
+	display:grid;
+	background-color:#DCF3D4;
+	grid-template-columns: repeat(11, 1fr);
+	grid-template-rows:  repeat(11, 70px);
+	text-align: center;
+    
+}
+.card{
+	border: 1px solid black;
+    position: relative;
+    text-align: center;
+}
+.empty{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	grid-column-start: span 9;
+	grid-row-start: span 9;
+}
+/* Images' propierties */
+
+#logo{
+    position: absolute;
+    bottom: 300px;
+    left: 225px;
+    width: 1100px;
+    height: 250px;
+    transform: rotate(-15deg);
+}
+
+#chance-img{
+    position: absolute;
+    bottom: 470px;
+    left: 240px;
+    width: 100px;
+    height: 175px;
+    /* width: 1100px; */
+    /* height: 250px; */
+    transform: rotate(-90deg);
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#chest-img{
+    position: absolute;
+    bottom: 100px;
+    left: 1000px;
+    width: 250px;
+    height: 200px;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+
+#parking-img{
+    max-width: 70%;
+    max-height: 70%;
+    margin: 5%;    
+}
+
+#train-station-img{
+    max-width: 60%;
+    height: 60%;
+}
+
+
+
+/* Cells positions */
+#charles{
+    grid-column-start: 11;
+    grid-column-end: 12;
+}
+
+.electric-company{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+#states{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+#virginia{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
+#pensilvania{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+#james{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+
+.bottom-comunity-chest{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 8;
+    grid-row-end: 9;
+}
+
+#tenessee{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 9;
+    grid-row-end: 10;
+}
+
+#new-york{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 10;
+    grid-row-end: 11;
+}
+
+.parking{
+    grid-column-start: 11;
+    grid-column-end: 12;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+#kentucky{
+    grid-column-start: 10;
+    grid-column-end: 11;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+.top-chance{
+    grid-column-start: 9;
+    grid-column-end: 10;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+#indiana{
+    grid-column-start: 8;
+    grid-column-end: 9;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+#illinois{
+    grid-column-start: 7;
+    grid-column-end: 8;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+#railroad{
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+#atlantic{
+    grid-column-start: 5;
+    grid-column-end: 6;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+#ventnor{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+.top-water-company{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+#marvin{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+.prison{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 11;
+    grid-row-end: 12;
+}
+
+#pacific{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 10;
+    grid-row-end: 11;
+}
+
+#carolina{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 9;
+    grid-row-end: 10;
+}
+
+.right-comunity-chest{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 8;
+    grid-row-end: 9;
+}
+
+#pennsylvania{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+
+#short-line{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 6;
+    grid-row-end: 7;
+}
+
+.right-chance{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
+#park{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+#luxury{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+#boardwalk{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+/* Background Colours for the cards and the positions' prices */
+
+.brown::before{
+    margin-bottom: 7%;
+    content: " ";
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+    background-color: brown;
+}
+
+.green::before{
+    margin-bottom: 7%;
+    content: " ";
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+    background-color: #7DB968;
+}
+
+.darkblue::before{
+    margin-bottom: 7%;
+    content: " ";
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+    background-color: darkblue;
+}
+
+.lightblue::before{
+    margin-bottom: 7%;
+    content: " ";
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+    background-color: lightblue;
+}
+
+.orange::before{
+    margin-bottom: 7%;
+    content: " ";
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+    background-color: orange;
+}
+
+.red::before{
+    margin-bottom: 7%;
+    content: " ";
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+    background-color: red;
+}
+
+.yellow::before{
+    margin-bottom: 7%;
+    content: " ";
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+    background-color: yellow;
+}
+
+.pink::before{
+    margin-bottom: 7%;
+    content: " ";
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 25%;
+    border: 1px solid black;
+    background-color: pink;
+}
+
+#card-chance-img{
+    max-width: 50%;
+    max-height: 50%;
+    margin: 5%;
+}
+
+#card-chest-img{
+    max-width: 50%;
+    max-height: 50%;
+    margin: 5%;
+}
+
+#lightbulb-img, #money-lost-img, #water-company-img{
+    max-width: 50%;
+    max-height: 50%;
+}
+
+
+
+/* Before and after of the prison cell to see it like the real Monopoly*/
+
+.jail::before{
+    content: "PRISON";
+    color: white;
+    position: absolute;
+    display: block;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    background: repeating-linear-gradient(to right, orangered, orangered 15px, black 3px, black 20px);
+}
+
+#arrow-img{
+    max-width: 50%;
+    max-height: 50%;
+    margin: 5%;
+    transform: rotate(-210deg);
+}
+
+#arrow-img-start{
+    max-width: 50%;
+    max-height: 50%;
+    margin: 5%;
+    transform: rotate(-180deg);
+}
