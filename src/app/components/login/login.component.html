@@ -16,9 +16,9 @@
         </div>
       </div>
       <div>
-        <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" />
-        <div *ngIf="formulario.controls['name']?.invalid && formulario.controls['name']?.touched">
-          <span *ngIf="formulario.controls['name']?.errors?.['required']">Name is required</span>
+        <input type="text" class="form-control" id="inputName" formControlName="nombre" placeholder="Name" />
+        <div *ngIf="formulario.controls['nombre']?.invalid && formulario.controls['name']?.touched">
+          <span *ngIf="formulario.controls['nombre']?.errors?.['required']">Name is required</span>
         </div>
       </div>
       <div>
@@ -41,7 +41,8 @@
   <!-- Formulario de inicio de sesión -->
   <div class="form-container sign-in-container">
     <!-- Formulario de inicio de sesión -->
-    <form action="#">
+    
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" action="#">
       <h1>Sign in</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -49,11 +50,11 @@
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <span>or use your account</span>
-      <input type="user" placeholder="user" />
-      <input type="password" placeholder="Password" />
+      <input type="nickname" placeholder="nickname" formControlName="nickname"/>
+      <input type="password" placeholder="Password" formControlName="password"/>
       <a href="#">Forgot your password?</a>
       <!-- Agregamos preventDefault al evento de clic -->
-      <button>Sign In</button>
+      <button type="submit" >Sign In</button>
     </form>
   </div>
 
@@ -74,10 +75,5 @@
   </div>
 </div>
 <footer>
-  <p>
-    Created with <i class="fa fa-heart"></i> by
-    <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-    - Read how I created this and how you can join the challenge
-    <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-  </p>
+
 </footer>
