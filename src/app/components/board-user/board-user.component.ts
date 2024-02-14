@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './board-user.component.css'
 })
 export class BoardUserComponent {
+showAdminBoard: any;
+showModeratorBoard: any;
 
 }

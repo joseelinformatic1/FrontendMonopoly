@@ -15,7 +15,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit{
 
   formulario!: FormGroup;
-  isLoogendIN = false;
+  isLogedIN = false;
   isLoginFailed=false;
   errorMessage='';
   isSuccesful = false;
@@ -30,6 +30,10 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.createForm();
+    if(this.storageService.isLoggedIn()){
+      this.isLogedIN= true;
+      this.roles = this.storageService.getUser().roles;
+    }
   }
   
 
@@ -38,10 +42,10 @@ export class LoginComponent implements OnInit{
       nickname: ['', Validators.required],
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, this.passwordValidator()]]
+      password: ['', [Validators.required, this.passwordValidator(6)]]
     });
   }
-  onSubmit(): void {
+  onSubmit($event: { preventDefault: any; }): void {
     const nickname = this.formulario.get('nickname')?.value;
     const password = this.formulario.get('password')?.value;
 
@@ -49,34 +53,88 @@ export class LoginComponent implements OnInit{
       next: data => {
       
         console.log(data); // Puedes hacer algo con la respuesta del servicio
+        $event.preventDefault();
+        this.storageService.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLogedIN = true;
+        this.roles = this.storageService.getUser().roles;
+        
       },
       error: err => {
-        console.error(err); // Maneja el error como desees
+        this.errorMessage = err.erro.message;
+        this.isLoginFailed = true;
       }
     });
   }
 
   // Custom validator for password
-  passwordValidator(): any {
+  passwordValidator(minLength: number): any {
     return (control: AbstractControl): ValidationErrors | null => {
       const value: string = control.value;
-      const hasNumber = /[0-9]/.test(value);
-      const hasSpecialCharacter = /[-_!@#$%^&*(),.?":{}|<>]/.test(value);
-      const hasLowerCase = /[a-z]/.test(value);
-      
-      if (!hasNumber || !hasSpecialCharacter || !hasLowerCase) {
-        return { invalidPassword: true };
+      const errors: string[] = [];
+  
+      const errorMessages: Record<string, string> = {
+        missingNumber: 'one number',
+        missingSpecialCharacter: 'one special character',
+        missingLowerCase: 'one lowercase letter',
+        missingUpperCase: 'one uppercase letter',
+        minLength: `${minLength} characters long`,
+      };
+  
+      const validations: Record<string, RegExp | ((value: string) => boolean)> = {
+        missingNumber: /[0-9]/,
+        missingSpecialCharacter: /[-_!@#$%^&*(),.?":{}|<>]/,
+        missingLowerCase: /[a-z]/,
+        missingUpperCase: /[A-Z]/,
+        minLength: (value: string) => value.length >= minLength
+      };
+  
+      for (const [key, validation] of Object.entries(validations)) {
+        if (typeof validation === 'function') {
+          if (!validation(value)) {
+            errors.push(errorMessages[key]);
+          }
+        } else {
+          if (!(validation as RegExp).test(value)) {
+            errors.push(errorMessages[key]);
+          }
+        }
       }
-      
-      return null;
+  
+      return errors.length ? errors : null;
     };
   }
+  
+  
+  get PasswordErrors(): string[] {
+    let passwordControl = this.formulario.get('password');
+    return passwordControl ? this.passwordValidator(6)(passwordControl) : [];
+  }
+  
+  get NicknameValid(){
+    return this.formulario.get('nickname')!.invalid && this.formulario.get('nickname')!.touched
+  }
+
+  get NameValid(){
+    return this.formulario.get('nombre')!.invalid && this.formulario.get('nombre')!.touched
+  }
+  
+  get EmailValid(){
+    return this.formulario.get('email')!.invalid && this.formulario.get('email')!.touched
+  }
+  
+
+  get PasswordValid(){
+    return this.formulario.get('password')!.invalid && this.formulario.get('password')!.touched
+  }
+
 
   crear(): void {
-    const nickname = this.formulario.get('nickname')?.value;
-    const nombre = this.formulario.get('nombre')?.value;
-    const email = this.formulario.get('email')?.value;
-    const password = this.formulario.get('password')?.value;
+    let nickname = this.formulario.get('nickname')?.value;
+    let nombre = this.formulario.get('nombre')?.value;
+    let email = this.formulario.get('email')?.value;
+    let password = this.formulario.get('password')?.value;
     this.authService.register(nickname,nombre,email,password).subscribe({
       next: data =>{
         console.log(data);
