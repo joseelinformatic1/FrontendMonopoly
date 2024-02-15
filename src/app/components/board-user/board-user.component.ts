@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-board-user',
@@ -7,7 +7,10 @@ import { Component } from '@angular/core';
   templateUrl: './board-user.component.html',
   styleUrl: './board-user.component.css'
 })
-export class BoardUserComponent {
+export class BoardUserComponent implements OnInit{
+ngOnInit(): void {
+ window.document.body.style.backgroundColor = '#F3F0E7';
+}
 showAdminBoard: any;
 showModeratorBoard: any;
 

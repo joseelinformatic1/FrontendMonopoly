@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { TableroComponent } from './components/tablero/tablero.component';
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 
@@ -9,11 +8,20 @@ import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,LoginComponent,TableroComponent],
+  imports: [RouterOutlet,LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  usersListVisible: boolean = false;
+
+  toggleAdminMode() {
+    this.usersListVisible = !this.usersListVisible;
+  }
+  
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
