@@ -1,0 +1,117 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+.add-player {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px auto; /*Centrar horizontalmente*/
+    width: 400px;
+    text-align: center;
+  }
+  
+  .add-player h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .add-player form {
+    margin-bottom: 10px;
+  }
+  
+  .add-player input[type="text"] {
+    width: calc(100% - 100px);
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .add-player select {
+    padding: 8px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .add-player button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .add-player button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .add-player p {
+    margin: 5px 0;
+    color: #dc3545;
+  }
+  
+  .add-player table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .add-player th,
+  .add-player td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .add-player th {
+    background-color: #f2f2f2;
+  }
+  
+  .add-player button[type="submit"] {
+    width: 100%;
+  }
+  
+  .add-player button[type="submit"]:hover,
+  .add-player button[type="submit"]:focus {
+    background-color: #0056b3;
+  }
+  
+  .add-player select option[value="amarillo"] {
+    background-color: yellow;
+  }
+  
+  .add-player select option[value="verde"] {
+    background-color: green;
+  }
+  
+  .add-player select option[value="azul"] {
+    background-color: blue;
+  }
+  
+  .add-player select option[value="rojo"] {
+    background-color: red;
+  }
+  .add-player select option[value="naranja"] {
+    background-color: orange;
+  }
+
+  .add-player select option[value="negro"] {
+    background-color: black;
+  }
+  .add-player select option[value="marron"] {
+    background-color: brown;
+  }
+  .add-player select option[value="rosa"] {
+    background-color: pink;
+  }
+
+  .delete-btn{
+    background-color: red;
+  }

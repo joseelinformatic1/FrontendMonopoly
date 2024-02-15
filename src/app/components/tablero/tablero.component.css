@@ -1,28 +1,32 @@
 /* General options */
 *{
     margin: 0;
-    font-size: 0.90em;
+    font-size: 0.92em;
 
 }
 
 body {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-	background-image: url("https://i.pinimg.com/originals/a4/73/cd/a473cda6c0a58d9b2e2bc2292d16c334.jpg");
+    /* margin: 0; */
+	/* background-image: url("https://i.pinimg.com/originals/a4/73/cd/a473cda6c0a58d9b2e2bc2292d16c334.jpg"); */
 	background-position: center;
 	background-repeat: repeat;
 	background-size: 100px;
+    padding: 0px;
+    margin: 0px;
+
 }
 
 #board {
 	display:grid;
-	background-color:#DCF3D4;
-	grid-template-columns: repeat(11, 1fr);
-	grid-template-rows:  repeat(11, 70px);
+	grid-template-columns: repeat(11, 140px);
+	grid-template-rows:  repeat(11, 90px);
 	text-align: center;
+    background-color:#DCF3D4;
+
     
 }
 .card{
@@ -31,34 +35,112 @@ body {
     text-align: center;
 }
 .empty{
+    margin: 10px;
+    border: 4px solid black;
+    /* background-color: brown; */
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	grid-column-start: span 9;
-	grid-row-start: span 9;
+
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+	grid-column-start: 2;
+    grid-column-end: span 9;
+	grid-row-start: 2;
+    grid-row-end: span 9;
 }
 /* Images' propierties */
 
 #logo{
-    position: absolute;
-    bottom: 300px;
-    left: 225px;
     width: 1100px;
-    height: 250px;
     transform: rotate(-15deg);
 }
 
+#dices-button{
+    position: absolute;
+    display: flex;
+    bottom: 5%;
+    right: 5%;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    font-size: xx-large;
+
+}
+
+#buy-button{
+    position: absolute;
+    display: flex;
+    bottom: 5%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.img-logo{
+
+    position: absolute;
+    left: 5%;
+    top: 25%;
+}
+
+.image-card{
+    position: absolute;
+    display: flex;
+    bottom: 30%;
+    right: 5%;
+    width: 350px;
+    height: 500px;
+    /* animation: girar-carta 4s  1; */
+    /* border: 2px solid black; */
+}
+
+.sold-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* La imagen estará invisible al principio */
+    transition-duration: 0.2s; /* Agrega una transición para la opacidad */
+  }
+  
+  .animar .sold-image {
+    opacity: 1; 
+  }
+
+/* keyframe of image-card */
+
+.animar {
+    animation: girar-carta 6s 1;
+  }
+  
+  @keyframes girar-carta {
+    0% { transform: rotateY(0deg) rotateZ(0deg) }
+    100% { transform: rotateY(720deg) rotateZ(0deg) }
+  }
+
+#text{
+    position: absolute;
+    display: flex;
+    bottom: 25%;
+    right: 5%;
+    font-size: x-large;
+    font-weight: bold;
+    /* width: 350px;
+    height: 500px; */
+}
+/* Images */
+
 #chance-img{
     position: absolute;
-    bottom: 470px;
-    left: 240px;
+    left: 6%;
+    /* top: 10%; */
     width: 100px;
     height: 175px;
-    /* width: 1100px; */
-    /* height: 250px; */
     transform: rotate(-90deg);
-    background-color: white;
+    /* background-color: white; */
     border: 1px solid black;
     padding: 20px;
     cursor: pointer;
@@ -66,8 +148,8 @@ body {
 
 #chest-img{
     position: absolute;
-    bottom: 100px;
-    left: 1000px;
+    right: 3%;
+    bottom: 5%;
     width: 250px;
     height: 200px;
     border: 1px solid black;
@@ -106,6 +188,7 @@ body {
     grid-column-end: 12;
     grid-row-start: 4;
     grid-row-end: 5;
+    
 }
 
 #virginia{
@@ -425,4 +508,46 @@ body {
     max-height: 50%;
     margin: 5%;
     transform: rotate(-180deg);
+}
+
+.casillaActiva {
+    position: relative;
+  }
+  
+  .casillaActiva::after{
+    content: '';
+    position: absolute;
+    background-color: black;
+    bottom: 5%;
+    left: 5%;
+    width: 10px;
+    height: 10px; 
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .jugador-activo {
+    font-weight: bold; /* Por ejemplo, resaltar el jugador activo */
+  }
+
+  .jugadores{
+    position: absolute;
+    display: flex;
+    right: 10%;
+    top: 5%;
+    width: 150px;
+    height: 70px;
+  }
+
+
+.add-player{
+    border: 2px solid black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 3%;
+    width: 400px;
+    height: 100px;
+    font-size: 1.5em;
 }
