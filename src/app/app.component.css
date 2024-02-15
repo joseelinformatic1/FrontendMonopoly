@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 50px;
+    font-size: x-large;
+  }
+  
+  .menu {
+    color: white;
+    text-decoration-line: none;
+  }
+  
+  .navbar-container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .nav-item {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: sienna;
+  }
+  
+  .register,
+  .log-in {
+    margin-left: 20px;
+  }
+  
+  .register {
+    background-color: lightskyblue;
+    color: black;
+    width: auto;
+    padding: 10px;
+    border-radius: 10%/50%;
+  }
+  
+  #users-list {
+    display: none;
+  }
+  
