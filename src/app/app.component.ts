@@ -2,15 +2,21 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
+
 import { TableroComponent } from './components/tablero/tablero.component';
 import { AddPlayerComponent } from './components/add-player/add-player.component';
 import { Component } from '@angular/core';
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
+
   imports: [RouterOutlet, LoginComponent, TableroComponent, AddPlayerComponent],
+
+  imports: [RouterOutlet,LoginComponent],
+
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
