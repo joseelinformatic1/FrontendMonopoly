@@ -1,54 +1,53 @@
-<button id="dices-button" style="margin-right: 20px; width: 200px; height: 200px; font-size: x-large;">Aleatory number 1/6</button>
+
 <div id="board" class="card">
 
   <!-- Bottom Row -->
-
     <!--  -->
-    <div class="card corner go">START <br>
+    <div class="card corner go" id="start" [ngClass]="casillaActiva== 0 ? 'casillaActiva': ''" (click)="onCasillaClick('start')" >START <br>
       <img src="assets/img/arrow.png" id="arrow-img-start" >
     </div>
     <!--  -->
-    <div class="card bottom road mediterranean brown">
+    <div class="card bottom road mediterranean brown" id="mediterranean-ave" [ngClass]="casillaActiva== 1 ? 'casillaActiva': ''" (click)="onCasillaClick('mediterranean-ave')">
       MEDITERRANEAN AVENUE
       <div class="value">60€</div>
     </div>
     <!--  -->
-    <div class="card bottom comunity-chest">COMMUNITY CHEST
+    <div class="card bottom comunity-chest" id="chest1" [ngClass]="casillaActiva== 2 ? 'casillaActiva': ''" (click)="onCasillaClick('chest1')">COMMUNITY CHEST
       <img id="card-chest-img" src="assets/img/chest.png">
     </div>
     <!--  -->
-    <div  class="card bottom road baltic brown">
+    <div  class="card bottom road baltic brown" id="baltic-ave" [ngClass]="casillaActiva== 3 ? 'casillaActiva': ''" (click)="onCasillaClick('baltic-ave')">
       BALTIC AVENUE
       <div class="value">60€</div>
     </div>
     <!--  -->
-    <div class="card bottom TAX">
+    <div class="card bottom TAX" id="tax" [ngClass]="casillaActiva== 4 ? 'casillaActiva': ''" (click)="onCasillaClick('tax')">
       INCOME TAX <br>
       <img src="assets/img/money-lost.png" id="money-lost-img" alt="">
       <div class="value">PAY 200€</div>
     </div>
     <!--  -->
-    <div class="card bottom train-station">
+    <div class="card bottom train-station" id="railroad-top" [ngClass]="casillaActiva== 5 ? 'casillaActiva': ''" (click)="onCasillaClick('railroad')">
       READING RAILROAD  <br>
       <img src="assets/img/trainstation.png" id="train-station-img" alt="">
       <div class="value">200€</div>
     </div>
     <!--  -->
-    <div class="card bottom oriental lightblue">
+    <div class="card bottom oriental lightblue" id="oriental-ave" [ngClass]="casillaActiva== 6 ? 'casillaActiva': ''" (click)="onCasillaClick('oriental-ave')">
       ORIENTAL AVENUE
       <div class="value">100€</div>
     </div>
     <!--  -->
-    <div class="card bottom chance">CHANCE <br>
+    <div class="card bottom chance" id="chance1" [ngClass]="casillaActiva== 7 ? 'casillaActiva': ''" (click)="onCasillaClick('chance1')">CHANCE <br>
       <img id="card-chance-img" src="assets/img/chance.png">
     </div>
     <!--  -->
-    <div class="card bottom vermount lightblue">
+    <div class="card bottom vermount lightblue" id="vermount-ave" [ngClass]="casillaActiva== 8 ? 'casillaActiva': ''" (click)="onCasillaClick('vermount-ave')">
       VERMOUNT AVENUE
       <div class="value">100€</div>
     </div>
     <!--  -->
-    <div class="card bottom connecticut lightblue">
+    <div class="card bottom connecticut lightblue" id="connecticut-ave" [ngClass]="casillaActiva== 9 ? 'casillaActiva': ''" (click)="onCasillaClick('connecticut-ave')">
         CONNECTICUT AVENUE
         <div class="value">120€</div>
       </div>
@@ -56,56 +55,57 @@
 
   <!-- Left Column -->
 
-    <div class="card corner jail"></div>
+    <div class="card corner jail" id="prison" (click)="onCasillaClick('prison')" [ngClass]="casillaActiva== 10 ? 'casillaActiva': ''"></div>
     <!--  -->
-    <div class="card left pink" id="charles">
+    <div class="card left pink" id="charles" (click)="onCasillaClick('charles')" [ngClass]="casillaActiva== 11 ? 'casillaActiva': ''">
       ST. CHARLES PLACE
       <div class="value">140€</div>
     </div>
     <!--  -->
     <div class="empty">
-      <img src="img/logo.png" id="logo">
-      <img src="img/chance.png" id="chance-img">
-      <img src="img/chest.png" id="chest-img">
+      <div class="img-logo"><img src="assets/img/logo.png" id="logo"></div>
+      <img src="assets/img/chance.png" id="chance-img">
+      <img src="assets/img/chest.png" id="chest-img">
     </div>
     <!--  -->
-    <div class="card left electric-company">
+    <div class="card left electric-company" (click)="onCasillaClick('electric')" [ngClass]="casillaActiva== 12 ? 'casillaActiva': ''">
       ELECTRIC COMPANY <br>
-      <img src="img/lightbulb.png" id="lightbulb-img" alt="">
+      <img src="assets/img/lightbulb.png" id="lightbulb-img" alt="">
       <div class="value">150€</div>
     </div>
     <!--  -->
-    <div class="card left pink" id="states">
+    <div class="card left pink" id="states" (click)="onCasillaClick('states-ave')" [ngClass]="casillaActiva== 13 ? 'casillaActiva': ''">
       STATES AVENUE
       <div class="value">140€</div>
     </div>
     <!--  -->
-    <div class="card left pink" id="virginia">
+    <div class="card left pink" id="virginia" (click)="onCasillaClick('virginia-ave')" [ngClass]="casillaActiva== 14 ? 'casillaActiva': ''">
       VIRGINIA AVENUE
       <div class="value">160€</div>
     </div>
     <!--  -->
-    <div class="card left train-station" id="pensilvania">
+    <div class="card left train-station" id="pensilvania" (click)="onCasillaClick('pensilvania')" [ngClass]="casillaActiva== 15 ? 'casillaActiva': ''">
       PENSILVANIA RAILROAD <br>
-      <img src="img/trainstation.png" id="train-station-img" alt="">
+      <img src="assets/img/trainstation.png" id="train-station-img" alt="">
       <div class="value">200€</div>
     </div>
     <!--  -->
-    <div class="card left orange" id="james">
+    <div class="card left orange" id="james" (click)="onCasillaClick('james')" [ngClass]="casillaActiva== 16 ? 'casillaActiva': ''">
       ST. JAMES PLACE
       <div class="value">180€</div>
     </div>
     <!--  -->
-    <div class="card bottom-comunity-chest">COMMUNITY CHEST
-      <img id="card-chest-img" src="img/chest.png">
+    <div class="card bottom-comunity-chest" (click)="onCasillaClick('chest2')" [ngClass]="casillaActiva== 17 ? 'casillaActiva': ''">
+      COMMUNITY CHEST
+      <img id="card-chest-img" src="assets/img/chest.png">
     </div>
     <!--  -->
-    <div class="card left orange" id="tenessee">
+    <div class="card left orange" id="tenessee" (click)="onCasillaClick('tenessee-ave')" [ngClass]="casillaActiva== 18 ? 'casillaActiva': ''">
       TENESSEE AVENUE
       <div class="value">180€</div>
     </div>
     <!--  -->
-    <div class="card left orange" id="new-york">
+    <div class="card left orange" id="new-york" (click)="onCasillaClick('new-york-ave')" [ngClass]="casillaActiva== 19 ? 'casillaActiva': ''">
       NEW YORK AVENUE
       <div class="value">200€</div>
     </div>
@@ -114,52 +114,52 @@
     
   <!-- Top Row -->
 
-    <div class="card top parking">FREE PARKING <br>
-      <img src="img/parking.png" id="parking-img" alt="">
+    <div class="card top parking" (click)="onCasillaClick('parking')" [ngClass]="casillaActiva== 20 ? 'casillaActiva': ''">FREE PARKING <br>
+      <img src="assets/img/parking.png" id="parking-img" alt="">
     </div>
     <!--  -->
-    <div class="card top red" id="kentucky">
+    <div class="card top red" id="kentucky" (click)="onCasillaClick('kentucky-ave')" [ngClass]="casillaActiva== 21 ? 'casillaActiva': ''">
       KENTUCKY AVENUE
       <div class="value">220€</div>
     </div>
     <!--  -->
-    <div class="card top-chance">CHANCE <br>
-      <img id="card-chance-img" src="img/chance.png">
+    <div class="card top-chance" (click)="onCasillaClick('chance2')" [ngClass]="casillaActiva== 22 ? 'casillaActiva': ''">CHANCE <br>
+      <img id="card-chance-img" src="assets/img/chance.png">
     </div>
     <!--  -->
-    <div class="card top red" id="indiana">
+    <div class="card top red" id="indiana" (click)="onCasillaClick('indiana-ave')" [ngClass]="casillaActiva== 23 ? 'casillaActiva': ''">
       INDIANA AVENUE
       <div class="value">220€</div>
     </div>
     <!--  -->
-    <div class="card top red" id="illinois">
+    <div class="card top red" id="illinois" (click)="onCasillaClick('illinois-ave')" [ngClass]="casillaActiva== 24 ? 'casillaActiva': ''">
       ILLINOIS AVENUE
       <div class="value">240€</div>
     </div>
     <!--  -->
-    <div class="card top train-station" id="railroad">
+    <div class="card top train-station" id="railroad" (click)="onCasillaClick('Band0')" [ngClass]="casillaActiva== 25 ? 'casillaActiva': ''">
       B. & O. RAILROAD <br>
-      <img src="img/trainstation.png" id="train-station-img" alt="">
+      <img src="assets/img/trainstation.png" id="train-station-img" alt="">
       <div class="value">200€</div>
     </div>
     <!--  -->
-    <div class="card top yellow" id="atlantic">
+    <div class="card top yellow" id="atlantic" (click)="onCasillaClick('atlantic-ave')" [ngClass]="casillaActiva== 26 ? 'casillaActiva': ''">
       ATLANTIC AVENUE
       <div class="value">260€</div>
     </div>
     <!--  -->
-    <div class="card top yellow" id="ventnor">
+    <div class="card top yellow" id="ventnor" (click)="onCasillaClick('ventnor-ave')" [ngClass]="casillaActiva== 27 ? 'casillaActiva': ''">
       VENTNOR AVENUE
       <div class="value">260€</div>
     </div>
     <!--  -->
-    <div class="card top-water-company">
+    <div class="card top-water-company" (click)="onCasillaClick('water-works')" [ngClass]="casillaActiva== 28 ? 'casillaActiva': ''">
       WATER WORKS <br>
-      <img src="img/water-company.png" id="water-company-img" alt="">
+      <img src="assets/img/water-company.png" id="water-company-img" alt="">
       <div class="value">150€</div>
     </div>
     <!--  -->
-    <div class="card top yellow" id="marvin">
+    <div class="card top yellow" id="marvin" (click)="onCasillaClick('marvin')" [ngClass]="casillaActiva== 29 ? 'casillaActiva': ''">
       MARVIN GARDENS
       <div class="value">280€</div>
     </div>
@@ -168,51 +168,74 @@
 
   <!-- Right Column -->
     <!--  -->
-    <div class="card right prison">GO TO THE PRISON
-      <img id="arrow-img" src="img/arrow.png">
+    <div class="card right prison" (click)="onCasillaClick('go-prison')" [ngClass]="casillaActiva== 30 ? 'casillaActiva': ''">GO TO THE PRISON
+      <img id="arrow-img" src="assets/img/arrow.png">
     </div>
     <!--  -->
-    <div class="card right green" id="pacific">
+    <div class="card right green" id="pacific" (click)="onCasillaClick('pacific-ave')" [ngClass]="casillaActiva== 31 ? 'casillaActiva': ''">
       PACIFIC AVENUE
       <div class="value">300€</div>
     </div>
     <!--  -->
-    <div class="card right green" id="carolina">
+    <div class="card right green" id="carolina" (click)="onCasillaClick('carolina-ave')" [ngClass]="casillaActiva== 32 ? 'casillaActiva': ''">
       NORTH CAROLINA AVENUE
       <div class="value">300€</div>
     </div>
     <!--  -->
-    <div class="card right-comunity-chest">COMMUNITY CHEST
-      <img id="card-chest-img" src="img/chest.png">
+    <div class="card right-comunity-chest" (click)="onCasillaClick('chest3')" [ngClass]="casillaActiva== 33 ? 'casillaActiva': ''">COMMUNITY CHEST
+      <img id="card-chest-img" src="assets/img/chest.png">
     </div>
     <!--  -->
-    <div class="card right green" id="pennsylvania">
+    <div class="card right green" id="pennsylvania" (click)="onCasillaClick('pennsylvania-ave')" [ngClass]="casillaActiva== 34 ? 'casillaActiva': ''">
       PENNSYLVANIA AVENUE
       <div class="value">320€</div>
     </div>
     <!--  -->
-    <div class="card right train-station" id="short-line">
+    <div class="card right train-station" id="short-line" (click)="onCasillaClick('shortline')" [ngClass]="casillaActiva== 35 ? 'casillaActiva': ''">
         SHORT LINE <br>
-        <img src="img/trainstation.png" id="train-station-img" alt="">
+        <img src="assets/img/trainstation.png" id="train-station-img" alt="">
       <div class="value">200€</div>
     </div>
     <!--  -->
-    <div class="card right-chance">CHANCE <br>
-      <img id="card-chance-img" src="img/chance.png">
+    <div class="card right-chance" (click)="onCasillaClick('chance3')" [ngClass]="casillaActiva== 36 ? 'casillaActiva': ''">CHANCE <br>
+      <img id="card-chance-img" src="assets/img/chance.png">
     </div>
     <!--  -->
-    <div class="card right darkblue" id="park">
+    <div class="card right darkblue" id="park" (click)="onCasillaClick('park')" [ngClass]="casillaActiva== 37 ? 'casillaActiva': ''">
         PARK PLACE
       <div class="value">350€</div>
     </div>
     <!--  -->
-    <div class="card right" id="luxury">
+    <div class="card right" id="luxury" (click)="onCasillaClick('tax2')" [ngClass]="casillaActiva== 38 ? 'casillaActiva': ''">
         LUXURY TAX <br>
-        <img src="img/money-lost.png" id="money-lost-img" alt="">
+        <img src="assets/img/money-lost.png" id="money-lost-img" alt="">
       <div class="value">PAY 100€</div>
     </div>
      <!--  -->
-     <div class="card right darkblue" id="boardwalk">
+     <div class="card right darkblue" id="boardwalk" (click)="onCasillaClick('broadwalk')" [ngClass]="casillaActiva== 39 ? 'casillaActiva': ''">
         BROADWALK
       <div class="value">400€</div>
     </div>
+
+    <div id="text">{{ texto }}</div>
+
+    <div>
+      <button id="dices-button" (click)="onButtonClick()">Aleatory number 1/12</button>
+
+      @if (mostrarBotonComprarParaCasilla(casillaActual)) {
+        <button id="buy-button" (click)="comprarCasilla()" (click)="toggleAnimacion()" >Buy propierty</button>
+      }
+      
+
+    </div>
+    <div class="image-card" [ngClass]="{'animar': animacionActiva}">
+      <img [src]="rutaImagen">
+     @if (animacionActiva) {
+      <img src="assets/img/sold.png" class="sold-image" id="sold-image">
+     }
+    </div>
+
+
+  
+
+    

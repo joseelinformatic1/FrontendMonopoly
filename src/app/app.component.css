@@ -50,6 +50,7 @@ body {
     margin-left: 20px;
   }
   
+
   .log-in {
     background-color: lightcoral;
     color: black;
@@ -58,6 +59,7 @@ body {
     border-radius: 10%;
   }
   
+
   .register {
     background-color: lightskyblue;
     color: black;
