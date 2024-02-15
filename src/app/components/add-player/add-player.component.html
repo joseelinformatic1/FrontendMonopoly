@@ -1,0 +1,20 @@
+<div class="add-player">
+    <h2>Jugadores en la partida:</h2>
+
+  <form (submit)="agregarJugador(nombreJugador.value, $event)">
+    <input type="text" #nombreJugador placeholder="Nombre del jugador">
+    <button type="submit" [disabled]="numeroJugadores >= maximoJugadores">Agregar Jugador</button>
+  </form>
+  @if (numeroJugadores=== maximoJugadores) {
+    <p>Has alcanzado el máximo de jugadores permitidos.</p>
+  }
+  @if (numeroJugadores===minimoJugadores) {
+    <p>Debes agregar al menos un jugador.</p>
+  }
+  <ul>
+    <li *ngFor="let jugador of jugadores; let i = index">
+      {{ jugador }}
+      <button (click)="eliminarJugador(i)">Eliminar</button>
+    </li>
+    </ul>
+</div>
