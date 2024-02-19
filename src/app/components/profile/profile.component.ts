@@ -29,10 +29,12 @@ export class ProfileComponent implements OnInit {
   constructor(private storageService: StorageService, private userService: UserService, private route : ActivatedRoute,private formBuilder: FormBuilder) { 
 
 
-    this.profile= this.formBuilder.group({
-      name:['',Validators.required],
-      email:['',Validators.required,Validators.minLength(6)]
-    })
+    this.profile = this.formBuilder.group({
+      nickname: [null, Validators.required], // Añade esto si quieres mostrar/editar el nickname
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email, Validators.minLength(6)]]
+    });
+    
   }
 
 
@@ -58,5 +60,22 @@ export class ProfileComponent implements OnInit {
   get modify(){
     return "";
   }
+  updateUser() {
+    if (this.profile.valid) {
+      this.userService.updateUserProfile(this.profile.value).subscribe({
+        next: (response) => {
+          console.log('Perfil actualizado con éxito', response);
+          // Actualiza `currentUser` con los datos actualizados si es necesario
+          // Mostrar alguna notificación al usuario sobre el éxito de la operación
+        },
+        error: (error) => {
+          console.error('Error al actualizar el perfil', error);
+          // Mostrar alguna notificación al usuario sobre el fallo de la operación
+        }
+      });
+    }
+  }
+  
+  
   
 }

@@ -11,6 +11,7 @@ const API_URL = 'http://localhost:8090/api/v1';
   providedIn: 'root',
 })
 export class UserService {
+ 
   API_URL: any;
   constructor(private http: HttpClient,private storageService: StorageService) {}
 
@@ -50,5 +51,17 @@ export class UserService {
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
+
+  updateUserProfile(nickname: string): Observable<any> {
+    let headers = new HttpHeaders ();
+    let token = this.storageService.getToken();
+
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+
+    return this.http.put(API_URL+'update', nickname,{ headers });
+  }
+  
   
 }
