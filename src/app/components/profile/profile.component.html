@@ -1,21 +1,17 @@
-@if (currentUser) {
+<app-header></app-header>
+  @if(currentUser){
     <div class="container">
-      <header class="jumbotron">
-        <h3>
-          <strong>{{ currentUser.username }}</strong> Profile
-        </h3>
-      </header>
-      <p>
-        <strong>Email:</strong>
-        {{ currentUser.email }}
-      </p>
-      <strong>Roles:</strong>
-      <ul>
-        @for (role of currentUser.roles; track role) {
-        <li>{{ role }}</li>
+     
+     
+      <h2>Perfil de Usuario</h2>
+      <p class="nickname">Nickname: {{ currentUser.nickname }}</p>
+      <form [formGroup]="profile" action="#">
+        <p class="name">Nombre: {{ currentUser.nombre }}</p>
+        @if(modify){
+          
         }
-      </ul>
+        <p class="email">Email: {{ currentUser.email }}</p>
+      </form>
     </div>
-    } @else {
-    <p>Please login.</p>
-    }
+ 
+  }
