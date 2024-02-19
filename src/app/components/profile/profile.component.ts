@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
 export class ProfileComponent implements OnInit {
   currentUser: UserPayload | null = null;
   profile: FormGroup;
-  
+  modify = true;
   constructor(private storageService: StorageService, private userService: UserService, private route : ActivatedRoute,private formBuilder: FormBuilder) { 
 
 
@@ -56,10 +56,12 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-
-  get modify(){
-    return "";
+  toggleModify() {
+    this.modify = !this.modify; // Esto alternará correctamente el valor de modify
+    console.log("Modo modificar:", this.modify);
   }
+  
+  
   updateUser() {
     if (this.profile.valid) {
       this.userService.updateUserProfile(this.profile.value).subscribe({
@@ -75,7 +77,4 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
-  
-  
-  
 }
