@@ -5,8 +5,7 @@
 >
   <!-- Formulario de registro -->
   <div class="form-container sign-up-container">
-  <!--
-     <form [formGroup]="formulario" action="#">
+     <form [formGroup]="register"  (ngSubmit)="onSubmitRegister()" action="#">
       <h1>Create Account</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -22,7 +21,7 @@
           formControlName="nickname"
           placeholder="Nickname"
         />
-        @if (NicknameValid) {
+        @if (RegisterNicknameValid) {
         <div>
           <span class="error"> Nickname is required </span>
         </div>
@@ -36,7 +35,7 @@
           formControlName="nombre"
           placeholder="Name"
         />
-        @if (NameValid){
+        @if (RegisterNameValid){
         <div>
           <span class="error">Name is required </span>
         </div>
@@ -51,7 +50,7 @@
           placeholder="Email"
         />
 
-        @if (EmailValid){
+        @if (RegisterEmailValid){
         <div>
           <span class="error">email is required</span>
         </div>
@@ -65,7 +64,7 @@
           formControlName="password"
           placeholder="Password"
         />
-        @if (PasswordValid){ @for (error of PasswordErrors; track $index) {
+        @if (RegisterPasswordValid){ @for (error of PasswordErrors; track $index) {
         <div>
           <span class="error">Must contain at least {{ error }}</span>
         </div>
@@ -76,8 +75,6 @@
         <button type="submit">Sign Up</button>
       </div>
     </form>
-
-  -->
    
   </div>
   <!-- Formulario de inicio de sesión -->
@@ -85,7 +82,7 @@
     <!-- Formulario de inicio de sesión -->
     <form
       [formGroup]="loginForm"
-      (ngSubmit)="onSubmit()"
+      (ngSubmit)="onSubmitLogin()"
       novalidate
       name="form"
     >

@@ -23,12 +23,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  register: FormGroup;
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
-
-  formulario!: FormGroup;
   isSuccesful = false;
   isSignUpFailed = false;
   constructor(
@@ -40,7 +39,14 @@ export class LoginComponent implements OnInit {
     this.loginForm= this.formBuilder.group({
       nickname:['',Validators.required],
       password:['',Validators.required,Validators.minLength(6)]
-    })
+    }),
+    this.register = this.formBuilder.group({
+      nickname: ['', Validators.required],
+      nombre: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, this.passwordValidator(6)]],
+    });
+    
   }
 
   ngOnInit(): void {
@@ -48,44 +54,19 @@ export class LoginComponent implements OnInit {
       nickname:['',Validators.required],
       password:['',[Validators.required,Validators.minLength(6)]],
     })
-    if (this.storageService.isLoggedIn()) {
-      this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
-      this.router.navigate(['home']);
-    }
-  }
-/*
-  createForm() {
-    this.formulario = this.formBuilder.group({
+    this.register = this.formBuilder.group({
       nickname: ['', Validators.required],
       nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.passwordValidator(6)]],
     });
-  }
-*/
-
-  onSubmit(): void {
-    if(this.loginForm.invalid){
-      return;
+    if (this.storageService.isLoggedIn()) {
+      this.isLoggedIn = true;
+      // Usar optional chaining para evitar errores si .roles es undefined
+      this.roles = this.storageService.getUser()?.roles || [];
+      this.router.navigate(['home']);
     }
-    let {nickname,password} = this.loginForm.value;
-    this.authService.login(nickname,password).subscribe({
-      next:data =>{
-        this.storageService.saveUser(data);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-        this.router.navigate(['home']);
-      },
-      error:err =>{
-        this.errorMessage  = err.error ? err.erro.message: 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo.';
-        this.isLoginFailed = true;
-      }
-    })
   }
-
-  // Custom validator for password
   passwordValidator(minLength: number): any {
     return (control: AbstractControl): ValidationErrors | null => {
       const value: string = control.value;
@@ -124,6 +105,96 @@ export class LoginComponent implements OnInit {
     };
   }
 
+
+
+
+  onSubmitLogin(): void {
+    if(this.loginForm.invalid){
+      return;
+    }
+    let {nickname,password} = this.loginForm.value;
+    this.authService.login(nickname,password).subscribe({
+      next:data =>{
+        this.storageService.saveUser(data);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.storageService.getUser().roles;
+        this.router.navigate(['home']);
+      },
+      error:err =>{
+        this.errorMessage  = err.error ? err.erro.message: 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo.';
+        this.isLoginFailed = true;
+      }
+    })
+  }
+
+
+  onSubmitRegister(): void {
+    if (this.register.invalid) {
+      console.log('Formulario inválido');
+      return;
+    }
+  
+    let nickname = this.register.get('nickname')?.value;
+    let nombre = this.register.get('nombre')?.value;
+    let email = this.register.get('email')?.value;
+    let password = this.register.get('password')?.value;
+    
+    this.authService.register(nickname, nombre, email, password).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.isSuccesful = true;
+        this.isSignUpFailed = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.errorMessage = err.error.message || 'Ocurrió un error inesperado. Por favor, inténtalo de nuevo.';
+        this.isSignUpFailed = true;
+      },
+    });
+  }
+  
+
+  // Custom validator for password
+ 
+  
+  get RegisterPasswordErrors(): string[] {
+    let passwordControl = this.register.get('password');
+    return passwordControl ? this.passwordValidator(6)(passwordControl) : [];
+  }
+
+  get RegisterNicknameValid() {
+    return (
+      this.register.get('nickname')!.invalid &&
+      this.register.get('nickname')!.touched
+    );
+  }
+
+  get RegisterNameValid() {
+    return (
+      this.register.get('nombre')!.invalid &&
+      this.register.get('nombre')!.touched
+    );
+  }
+
+  get RegisterEmailValid() {
+    return (
+      this.register.get('email')!.invalid &&
+      this.register.get('email')!.touched
+    );
+  }
+
+  get RegisterPasswordValid() {
+    return (
+      this.register.get('password')!.invalid &&
+      this.register.get('password')!.touched
+    );
+  }
+
+
+
+
+
   get PasswordErrors(): string[] {
     let passwordControl = this.loginForm.get('password');
     return passwordControl ? this.passwordValidator(6)(passwordControl) : [];
@@ -156,32 +227,7 @@ export class LoginComponent implements OnInit {
       this.loginForm.get('password')!.touched
     );
   }
-/*
-  crear(): void {
-    let nickname = this.formulario.get('nickname')?.value;
-    let nombre = this.formulario.get('nombre')?.value;
-    let email = this.formulario.get('email')?.value;
-    let password = this.formulario.get('password')?.value;
-    this.authService.register(nickname, nombre, email, password).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.isSuccesful = true;
-        this.isSignUpFailed = false;
-      },
-      error: (err) => {
-        this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
-      },
-    });
 
-    if (this.formulario.valid) {
-      let formData = this.formulario.value;
-      console.log(formData);
-    } else {
-      console.log('Formulario inválido');
-    }
-  }
-*/
   panelActive: boolean = false;
 
   togglePanel(event: Event) {

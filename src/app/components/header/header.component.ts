@@ -1,24 +1,22 @@
 import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { StorageService } from './services/storage.service';
-import { AuthService } from './services/auth.service';
-
-import { TableroComponent } from './components/tablero/tablero.component';
-import { AddPlayerComponent } from './components/add-player/add-player.component';
-import { Component } from '@angular/core';
-
-
+import { Component,OnInit } from '@angular/core';
+import { StorageService } from '../../services/storage.service';
+import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../../services/auth.service';
+import { TableroComponent } from '../tablero/tablero.component';
+import { AddPlayerComponent } from '../add-player/add-player.component';
+StorageService
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-header',
   standalone: true,
 
   imports: [RouterOutlet, LoginComponent, TableroComponent, AddPlayerComponent],
 
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css'
 })
-export class AppComponent {
+export class HeaderComponent implements OnInit {
   usersListVisible: boolean = false;
 
   toggleAdminMode() {
@@ -49,6 +47,7 @@ export class AppComponent {
      
     }
   }
+
   logout(): void {
     this.authService.logout();
     this.storageService.removeToken();

@@ -1,0 +1,44 @@
+/* Estilos Generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía suave y moderna */
+    background-color: #f4f4f4; /* Color de fondo suave */
+    color: #333; /* Color de texto principal */
+  }
+  
+  /* Estilos del Contenedor */
+  .container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1), 
+                0 2px 10px rgba(0,0,0,0.1); /* Sombras suaves */
+    width: calc(100% - 40px); /* Ancho con un poco de margen */
+    max-width: 600px; /* Máximo ancho */
+    margin: 20px auto; /* Centrado y margen superior e inferior */
+    padding: 20px; /* Espaciado interno */
+    overflow: hidden;
+  }
+  
+  /* Estilos del Título */
+  h2 {
+    color: #007BFF; /* Color del título, azul suave */
+    margin-bottom: 20px; /* Espacio debajo del título */
+  }
+  
+  /* Estilos de los Párrafos */
+  p {
+    line-height: 1.6; /* Espaciado de línea para mejor legibilidad */
+    margin-bottom: 10px; /* Espaciado entre párrafos */
+  }
+  
+  /* Pequeñas mejoras para espaciado y visualización */
+  p:last-child {
+    margin-bottom: 0; /* Elimina el margen del último párrafo */
+  }
+  
+  /* Para el nombre de usuario y el email, podrías querer algo especial */
+  .nickname, .email {
+    font-weight: bold; /* Hace que el nickname y el email sean más notorios */
+  }
+  

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { StorageService } from './storage.service';
 
 
 const AUTH_API = 'http://localhost:8090/auth/';
@@ -13,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private storageService: StorageService) {}
 
   login(nickname: string, password: string): Observable<any> {
     return this.http.post(
@@ -40,11 +42,11 @@ export class AuthService {
     return throwError(() => new Error(errorMessage));
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
+  register(nickname: string,nombre: string, email: string, password: string): Observable<any> {
     return this.http.post(
       AUTH_API + 'nuevo',
-      {
-        "username":username,
+      { "nickname":nickname,
+        "nombre":nombre,
         "email":email,
         "password": password,
       },
@@ -52,8 +54,8 @@ export class AuthService {
     );
   }
 
-  logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+  logout(): void {
+    this.storageService.removeToken()
   }
 }
 
