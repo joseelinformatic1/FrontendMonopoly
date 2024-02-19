@@ -8,13 +8,15 @@
       <form [formGroup]="profile" action="#" (ngSubmit)="updateUser()">
         <p class="name">Nombre: {{ currentUser.nombre }}</p>
         <p class="email">Email: {{ currentUser.email }}</p>
-        @if(modify){
+        @if(!modify){
           <input formControlName="name" placeholder="Nombre">
           <input formControlName="email" placeholder="Email">
           <button type="submit">Guardar cambios</button>
+          <button (click)="toggleModify()">Cancelar</button>
+
         }
-        @if(!modify){
-          <button type="submit">Hacer cambios</button>
+        @if(modify){
+          <button (click)="toggleModify()">Hacer cambios</button>
         }
         
       </form>
