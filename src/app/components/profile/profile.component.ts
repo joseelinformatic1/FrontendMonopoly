@@ -30,8 +30,8 @@ export class ProfileComponent implements OnInit {
 
 
     this.profile = this.formBuilder.group({
-      nickname: [null, Validators.required], // Añade esto si quieres mostrar/editar el nickname
-      name: ['', Validators.required],
+    // Añade esto si quieres mostrar/editar el nickname
+      nombre: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, Validators.minLength(6)]]
     });
     
@@ -39,13 +39,17 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // Asumiendo que el nickname se obtiene de alguna fuente válida
-    const nickname = this.storageService.getUser()?.nickname;
+    let nickname = this.storageService.getUser()?.nickname;
   
     if (nickname) {
       this.userService.getUserProfile(nickname).subscribe({
         next: (userProfile) => {
           this.currentUser = userProfile;
+          // Aquí actualizas el formulario con los datos obtenidos
+          this.profile.patchValue({
+            nombre: userProfile.nombre,
+            email: userProfile.email
+          });
         },
         error: (error) => {
           console.error('Hubo un error al obtener el perfil del usuario', error);
@@ -64,17 +68,43 @@ export class ProfileComponent implements OnInit {
   
   updateUser() {
     if (this.profile.valid) {
-      this.userService.updateUserProfile(this.profile.value).subscribe({
-        next: (response) => {
-          console.log('Perfil actualizado con éxito', response);
-          // Actualiza `currentUser` con los datos actualizados si es necesario
-          // Mostrar alguna notificación al usuario sobre el éxito de la operación
-        },
-        error: (error) => {
-          console.error('Error al actualizar el perfil', error);
-          // Mostrar alguna notificación al usuario sobre el fallo de la operación
+      const nickname = this.storageService.getUser()?.nickname; // Obtiene el nickname del usuario
+      if (nickname) {
+        // Verifica si el formulario tiene valores antes de crear userData
+        const nombreValue = this.profile.get('nombre')?.value;
+        const emailValue = this.profile.get('email')?.value;
+        
+        // Si alguno de los valores es null o undefined, maneja la situación adecuadamente
+        if (nombreValue == null || emailValue == null) {
+          console.error('Los datos del formulario no son válidos');
+          // Manejar el error aquí, posiblemente mostrando un mensaje al usuario
+          return;
         }
-      });
+        
+        // Si los valores son válidos, crea el objeto userData
+        const userData = {
+          nombre: nombreValue,
+          email: emailValue
+        };
+        
+        // Llama al servicio para actualizar el perfil con los datos del usuario
+        this.userService.updateUserProfile(nickname, userData).subscribe({
+          next: (response) => {
+            console.log('Perfil actualizado con éxito', response);
+            // Aquí podrías redirigir al usuario o mostrar un mensaje de éxito
+          },
+          error: (error) => {
+            console.error('Error al actualizar el perfil', error);
+            // Manejar el error, posiblemente mostrando un mensaje al usuario
+          }
+        });
+      } else {
+        console.error('No se pudo obtener el nickname del usuario para la actualización');
+        // Manejar este caso de error, tal vez redirigir al login
+      }
     }
   }
+  
+  
+  
 }

@@ -51,17 +51,19 @@ export class UserService {
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
-
-  updateUserProfile(nickname: string): Observable<any> {
-    let headers = new HttpHeaders ();
-    let token = this.storageService.getToken();
-
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
-
-    return this.http.put(API_URL+'update', nickname,{ headers });
+  updateUserProfile(nickname: string, userData: any): Observable<any> {
+    const token = this.storageService.getToken();
+    console.log('Token:', token); // Debugging token retrieval
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    console.log('User Data:', userData); // Debugging user data
+    const fullUrl = `${API_URL}/usuario/update/${nickname}`; // Ensure API_URL is correct
+    console.log('PUT Request URL:', fullUrl); // Debugging URL
+    return this.http.put(fullUrl, userData, { headers });
   }
+  
   
   
 }
