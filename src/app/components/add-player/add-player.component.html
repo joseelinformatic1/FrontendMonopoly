@@ -1,20 +1,54 @@
 <div class="add-player">
-    <h2>Jugadores en la partida:</h2>
-
-  <form (submit)="agregarJugador(nombreJugador.value, $event)">
-    <input type="text" #nombreJugador placeholder="Nombre del jugador">
-    <button type="submit" [disabled]="numeroJugadores >= maximoJugadores">Agregar Jugador</button>
+  <h2>Players in the game:</h2>
+  <br>
+  <form (submit)="agregarJugador(nombreJugador.value, colorSeleccionado.value, $event)">
+    <input type="text" #nombreJugador placeholder="Name of the player">
+    <br><br>
+    <select #colorSeleccionado>
+      <option *ngFor="let color of coloresDisponibles" [value]="color">{{ color }}</option>
+    </select>
+    <br><br>
+    <button type="submit" [disabled]="numeroJugadores >= maximoJugadores">Add player</button>
   </form>
-  @if (numeroJugadores=== maximoJugadores) {
-    <p>Has alcanzado el máximo de jugadores permitidos.</p>
-  }
-  @if (numeroJugadores===minimoJugadores) {
-    <p>Debes agregar al menos un jugador.</p>
-  }
-  <ul>
-    <li *ngFor="let jugador of jugadores; let i = index">
-      {{ jugador }}
-      <button (click)="eliminarJugador(i)">Eliminar</button>
-    </li>
-    </ul>
+  <p *ngIf="numeroJugadores=== maximoJugadores">You cannot add more players.</p>
+  <p *ngIf="numeroJugadores===minimoJugadores">You must add at least 2 players.</p>
+
+  <table *ngIf="jugadores.length > 0">
+    <tr>
+      <th>Name</th>
+      <th>Color</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let jugador of jugadores; let i = index">
+      <td>{{ jugador.nombre }}</td>
+      <td [style.background-color]="jugador.color"></td>
+      <td><button class="delete-btn" (click)="eliminarJugador(i)">Delete</button></td>
+    </tr>
+  </table>
+  <br>
+  <div *ngIf="mostrarBotonJugar">
+    <button (click)="jugarPartida()">Jugar partida</button>
+  </div>
+  <br>
+  <button *ngIf="mostrarResetButton" (click)="resetear()">Reset table</button>
 </div>
+
+<div *ngIf="mostrarDivPartida" class="game-div">
+  <h3 class="game-div-idGame">Partida #{{ numeroPartida }}</h3>
+  <h4>Players:</h4>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Color</th>
+    </tr>
+    <tr *ngFor="let jugador of jugadoresParaDiv; let i = index">
+      <td>{{ jugador.nombre }}</td>
+      <td [style.background-color]="jugador.color"></td>
+    </tr>
+  </table>
+  <br>
+  <a class="toPlay" [routerLink]= "['/tablero']" (click)="irTablero()">Jugar</a><br><br> 
+  <button *ngIf="esAdmin" (click)="eliminarPartidaGuardada()">Eliminar Partida Guardada</button>
+</div>
+
+<button id="modo-btn" (click)="toggleAdminMode()">Modo Admin: {{ esAdmin ? 'On' : 'Off' }}</button>

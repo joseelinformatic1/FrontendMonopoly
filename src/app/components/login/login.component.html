@@ -1,7 +1,12 @@
-<div class="container" id="container" [ngClass]="{'right-panel-active': panelActive}">
+<div
+  class="container"
+  id="container"
+  [ngClass]="{ 'right-panel-active': panelActive }"
+>
   <!-- Formulario de registro -->
   <div class="form-container sign-up-container">
-    <form [formGroup]="formulario" (ngSubmit)="crear()" action="#">
+  <!--
+     <form [formGroup]="formulario" action="#">
       <h1>Create Account</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -10,38 +15,80 @@
       </div>
       <span>or use your email for registration</span>
       <div>
-        <input type="text" class="form-control" id="inputNickname" formControlName="nickname" placeholder="Nickname" />
-        <div *ngIf="formulario.controls['nickname']?.invalid && formulario.controls['nickname']?.touched">
-          <span *ngIf="formulario.controls['nickname']?.errors?.['required']">Nickname is required</span>
+        <input
+          type="text"
+          class="form-control"
+          id="inputNickname"
+          formControlName="nickname"
+          placeholder="Nickname"
+        />
+        @if (NicknameValid) {
+        <div>
+          <span class="error"> Nickname is required </span>
         </div>
+        }
       </div>
       <div>
-        <input type="text" class="form-control" id="inputName" formControlName="name" placeholder="Name" />
-        <div *ngIf="formulario.controls['name']?.invalid && formulario.controls['name']?.touched">
-          <span *ngIf="formulario.controls['name']?.errors?.['required']">Name is required</span>
+        <input
+          type="text"
+          class="form-control"
+          id="inputName"
+          formControlName="nombre"
+          placeholder="Name"
+        />
+        @if (NameValid){
+        <div>
+          <span class="error">Name is required </span>
         </div>
+        }
       </div>
       <div>
-        <input type="email" class="form-control" id="inputEmail" formControlName="email" placeholder="Email" />
-        <div *ngIf="formulario.controls['email']?.invalid && formulario.controls['email']?.touched">
-          <span *ngIf="formulario.controls['email']?.errors?.['required']">Email is required</span>
-          <span *ngIf="formulario.controls['email']?.errors?.['email']">Invalid email format</span>
-        </div>
-      </div>
-      <div>
-        <input type="password" class="form-control" id="inputPassword" formControlName="password" placeholder="Password" />
-        <div *ngIf="formulario.controls['password']?.invalid && formulario.controls['password']?.touched">
-          <span *ngIf="formulario.controls['password']?.errors?.['required']">Password is required</span>
-        </div>
-      </div>
-      <button type="submit">Sign Up</button>
-    </form>
-  </div>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail"
+          formControlName="email"
+          placeholder="Email"
+        />
 
+        @if (EmailValid){
+        <div>
+          <span class="error">email is required</span>
+        </div>
+        }
+      </div>
+      <div>
+        <input
+          type="password"
+          class="form-control"
+          id="inputPassword"
+          formControlName="password"
+          placeholder="Password"
+        />
+        @if (PasswordValid){ @for (error of PasswordErrors; track $index) {
+        <div>
+          <span class="error">Must contain at least {{ error }}</span>
+        </div>
+        } }
+      </div>
+
+      <div>
+        <button type="submit">Sign Up</button>
+      </div>
+    </form>
+
+  -->
+   
+  </div>
   <!-- Formulario de inicio de sesión -->
   <div class="form-container sign-in-container">
     <!-- Formulario de inicio de sesión -->
-    <form action="#">
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      novalidate
+      name="form"
+    >
       <h1>Sign in</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -49,11 +96,22 @@
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <span>or use your account</span>
-      <input type="user" placeholder="user" />
-      <input type="password" placeholder="Password" />
+      <input type="text" placeholder="nickname" formControlName="nickname" />
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
       <a href="#">Forgot your password?</a>
       <!-- Agregamos preventDefault al evento de clic -->
-      <button>Sign In</button>
+      <button type="submit">Sign In</button>
+      <div class="form-group">
+        @if (isLoginFailed) {
+        <div class="alert alert-danger" role="alert">
+          Login failed: {{ errorMessage }}
+        </div>
+        }
+      </div>
     </form>
   </div>
 
@@ -63,21 +121,18 @@
       <div class="overlay-panel overlay-left">
         <h1>Welcome Back!</h1>
         <p>To keep connected with us please login with your personal info</p>
-        <button class="ghost" (click)="togglePanel($event)" id="signIn" >Sign In</button>
+        <button class="ghost" (click)="togglePanel($event)" id="signIn">
+          Sign In
+        </button>
       </div>
       <div class="overlay-panel overlay-right">
         <h1>Hello, Friend!</h1>
         <p>Enter your personal details and start journey with us</p>
-        <button class="ghost" (click)="togglePanel($event)" id="signUp">Sign Up</button>
+        <button class="ghost" (click)="togglePanel($event)" id="signUp">
+          Sign Up
+        </button>
       </div>
     </div>
   </div>
 </div>
-<footer>
-  <p>
-    Created with <i class="fa fa-heart"></i> by
-    <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-    - Read how I created this and how you can join the challenge
-    <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-  </p>
-</footer>
+<footer></footer>

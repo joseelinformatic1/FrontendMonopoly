@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FrontendMonopoly": {
+    "CursoAngular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/frontend-monopoly",
+            "outputPath": "dist/curso-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": [],
@@ -62,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "FrontendMonopoly:build:production"
+              "buildTarget": "CursoAngular:build:production"
             },
             "development": {
-              "buildTarget": "FrontendMonopoly:build:development"
+              "buildTarget": "CursoAngular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "FrontendMonopoly:build"
+            "buildTarget": "CursoAngular:build"
           }
         },
         "test": {
@@ -89,6 +90,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -98,6 +100,6 @@
     }
   },
   "cli": {
-    "analytics": "bfb43ca2-3715-474a-bcd1-14cd4fbff525"
+    "analytics": "52b93e13-1d5c-4318-85a7-e56406951678"
   }
 }

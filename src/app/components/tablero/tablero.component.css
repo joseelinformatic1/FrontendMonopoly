@@ -20,6 +20,7 @@ body {
 
 }
 
+
 #board {
 	display:grid;
 	grid-template-columns: repeat(11, 140px);
@@ -29,6 +30,18 @@ body {
 
     
 }
+.ficha-tablero {
+    width: 20px; /* Ancho de la ficha */
+    height: 20px; /* Altura de la ficha */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 0; /* Posición superior */
+    left: 0; /* Posición izquierda */
+    border-radius: 50%;
+  }
+  .espacio-ficha{
+    margin-right: 5px;
+  }
+
 .card{
 	border: 1px solid black;
     position: relative;
@@ -58,7 +71,7 @@ body {
 #dices-button{
     position: absolute;
     display: flex;
-    bottom: 5%;
+    bottom: 10%;
     right: 5%;
     width: 150px;
     height: 150px;
@@ -70,11 +83,21 @@ body {
 #buy-button{
     position: absolute;
     display: flex;
-    bottom: 5%;
+    bottom: 10%;
     right: 15%;
     width: 150px;
     height: 150px;
     text-align: center;
+    font-size: xx-large;
+}
+
+#turn-button{
+    position: absolute;
+    display: flex;
+    bottom: 1%;
+    right: 5%;
+    width: 363px;
+    height: 75px;
     font-size: xx-large;
 }
 
@@ -518,6 +541,7 @@ body {
     content: '';
     position: absolute;
     background-color: black;
+    border: 1px solid black;
     bottom: 5%;
     left: 5%;
     width: 10px;
@@ -551,3 +575,72 @@ body {
     height: 100px;
     font-size: 1.5em;
 }
+
+.jugador-tittle {
+    text-align: center;
+    width: 100%;
+    font-size: 2em;
+  }
+  
+  .div-players {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    top: 0;
+    text-align: center;
+    border: 1px solid black;
+    width: 400px;
+    height: 125px; 
+    display: flex;
+    flex-direction: column; 
+
+  }
+
+  .jugadores-row {
+    display: flex; 
+    justify-content: space-around;
+    align-items: center; 
+    margin-top: 10px;
+  }
+  
+  .jugador-info {
+    text-align: center;
+    margin: 0 10px; 
+    font-size: 2em;
+    padding: 5px;
+    border: 1px solid black;
+  }
+
+  .ficha-container {
+    display: flex;
+    justify-content: center; /* Centra la ficha horizontalmente */
+  }
+  
+  .ficha {
+    width: 30px;
+    height: 30px;
+    justify-content: center; /* Centra la ficha horizontalmente */
+    border-radius: 50%;
+  }
+  
+  span {
+    font-size: 1em; /* Tamaño de fuente más pequeño para ajustarse mejor */
+  }
+  
+  .turno-animacion {
+    animation: fade-in-out 0.5s ease infinite alternate;
+  }
+  
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+
+  
+

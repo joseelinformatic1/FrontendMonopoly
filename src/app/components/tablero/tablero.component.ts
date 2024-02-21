@@ -1,9 +1,10 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 import { DadosService } from '../../services/dados.service';
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AddPlayerComponent } from '../add-player/add-player.component';
-
+import { Jugador } from '../add-player/add-player.component';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-tablero',
@@ -22,6 +23,7 @@ import { AddPlayerComponent } from '../add-player/add-player.component';
 })
 export class TableroComponent implements OnInit{
 
+
   ajuego: number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39];
   ahtml: number[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39];
   name: string[] = ['start','mediterranean-ave','chest1','baltic-ave','tax','railroad','oriental-ave','chance1','vermount-ave','connecticut-ave','prison',
@@ -35,12 +37,39 @@ export class TableroComponent implements OnInit{
   animacionActiva: boolean = false;
   total = 0;
   casillaActual = '';
-  casillaActiva = 0;
+  totalNuevo = 0;
   numeroTotal = 0;
+  casillaActiva = 0;
   rutaImagen: string = '';
   casillaSeleccionadaParaAgregarImagen: string = '';
   texto: string = '';
-  constructor(private dadosService: DadosService) { }
+  jugadores: any[] = [];
+
+  jugadorActual: Jugador;
+
+
+  constructor(private dadosService: DadosService, private playerService: PlayerService) { 
+
+    this.jugadorActual = this.playerService.getJugadorActual();
+  }
+
+  ngOnInit(): void {
+    this.jugadores = this.playerService.getJugadores();
+    console.log(this.jugadores);
+  }
+
+  avanzarTurno() {
+    // Avanzar al siguiente turno cuando sea necesario
+    this.playerService.avanzarTurno();
+    // Actualizar el jugador actual
+    this.jugadorActual = this.playerService.getJugadorActual();
+    console.log("turno de " + this.jugadorActual.nombre);
+    
+  }
+
+  obtenerJugadores() {
+    this.jugadores = this.playerService.getJugadores();
+  }
 
   // Método para determinar si se debe mostrar el botón de comprar
   mostrarBotonComprarParaCasilla(casilla: string): boolean {
@@ -61,21 +90,20 @@ export class TableroComponent implements OnInit{
       soldImageElement.style.opacity = '0';
     }
 
-    const resultado = this.dadosService.lanzarDado(this.total);
-    this.total = resultado.contador;
+    const resultado = this.dadosService.lanzarDado(this.jugadorActual.nombre); // Pasar el nombre del jugador actual
+    const totalNuevo = resultado.contador; // Obtener el nuevo contador del resultado
     this.casillaActual = resultado.casilla;
     this.casillaActiva = resultado.numeroTotal;
-
-
 
     this.texto = `Has caído en la casilla ${this.casillaActual}`;
     console.log("Casilla:", this.casillaActual);
     this.rutaImagen = 'assets/img/cards/' + this.casillaActual + '.png'; 
     this.agregarImagenEnCasilla(this.casillaActual);
 
+    this.jugadorActual.contador = totalNuevo; // Actualizar el contador del jugador actual
+    console.log("casilla del jugador " + this.jugadorActual.nombre, + " " + totalNuevo);
 }
 
-  ngOnInit(): void {}
 
   onCasillaClick(id: string): void {
     // Obtener el número de casilla a partir del ID
@@ -97,6 +125,13 @@ export class TableroComponent implements OnInit{
     // Llama al método del servicio para registrar la compra de la casilla
     this.dadosService.comprarCasilla(this.casillaActual);
   }
+
+  casillaTieneFicha(jugador: Jugador, casilla: string): boolean {
+    return jugador.posicion.toString() === casilla;
+  }
+
+  
+  
 
 
 
