@@ -1,4 +1,4 @@
-<app-header></app-header>
+
   @if(currentUser){
     <div class="container">
      
@@ -9,8 +9,8 @@
         <p class="nombre">Nombre: {{ currentUser.nombre }}</p>
         <p class="email">Email: {{ currentUser.email }}</p>
         @if(!modify){
-          <input formControlName="nombre" >
-          <input formControlName="email">
+          <input class="nombre-input" formControlName="nombre" >
+          <input class="email-input" formControlName="email">
           <button type="submit">Guardar cambios</button>
           <button (click)="toggleModify()">Cancelar</button>
 
@@ -22,3 +22,5 @@
       </form>
     </div>
   }
+
+ 
