@@ -1,4 +1,4 @@
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { Component,OnInit } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { LoginComponent } from '../login/login.component';
@@ -11,7 +11,7 @@ StorageService
   selector: 'app-header',
   standalone: true,
 
-  imports: [RouterOutlet, LoginComponent, TableroComponent, AddPlayerComponent],
+  imports: [RouterOutlet, LoginComponent, AddPlayerComponent,RouterLink],
 
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -19,8 +19,14 @@ StorageService
 export class HeaderComponent implements OnInit {
   usersListVisible: boolean = false;
 
+  esAdmin: boolean = false;
+
   toggleAdminMode() {
-    this.usersListVisible = !this.usersListVisible;
+    this.esAdmin = !this.esAdmin;
+  }
+
+  toggleAdminModeFromChild(esAdmin: boolean) {
+    this.esAdmin = esAdmin;
   }
   
   title(title: any) {

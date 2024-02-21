@@ -6,17 +6,16 @@ import { AuthService } from './services/auth.service';
 import { TableroComponent } from './components/tablero/tablero.component';
 import { AddPlayerComponent } from './components/add-player/add-player.component';
 import { Component } from '@angular/core';
+import { HeaderComponent } from "./components/header/header.component";
 
 
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-
-  imports: [RouterOutlet, LoginComponent, TableroComponent, AddPlayerComponent],
-
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    imports: [RouterOutlet, LoginComponent, TableroComponent, AddPlayerComponent, HeaderComponent]
 })
 export class AppComponent {
   usersListVisible: boolean = false;
