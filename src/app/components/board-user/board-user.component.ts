@@ -9,7 +9,6 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class BoardUserComponent implements OnInit{
 ngOnInit(): void {
- window.document.body.style.backgroundColor = '#F3F0E7';
 }
 showAdminBoard: any;
 showModeratorBoard: any;
