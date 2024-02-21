@@ -1,0 +1,100 @@
+/* Añadimos estilos para el desplegable */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 50px; /* Espacio entre cada botón drop */
+  }
+  
+  .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 3em;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+  
+  .dropdown-content p {
+    margin: 0;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Mantenemos los estilos existentes */
+  .container {
+    max-width: 100%;
+    height: 85%; /* Ajuste: cambiamos a altura del viewport */
+    display: flex;
+    flex-direction: column; /*Ajuste: dirección de la columna */
+    justify-content: space-around; /*Ajuste: centrado vertical */
+    align-items: center; /* Ajuste: centrado horizontal */
+    background-color: #f0f0f0; /* Cambio de color de fondo */
+    font-family: Arial, sans-serif; /* Mantenemos la fuente */
+  }
+  
+  .tittle {
+    top: 100px;
+    text-align: center;
+    margin-top: 30px;
+    position: absolute;
+    animation: pulse 2s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  
+  .img-rotating {
+    overflow: hidden;
+    position: absolute;
+    bottom: 5%;
+    margin-right: 10px;
+    right: 2%;
+    animation: rotate 5s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg); 
+    }
+    to {
+      transform: rotate(-360deg); 
+    }
+  }
+  
+  .text {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+  
+  }
+  
+  .img-rotating img {
+    max-width: 200px;
+  }
+  
+  
+  
+  .img-home>img{
+    width: 100%;
+    height: 300px;
+  }

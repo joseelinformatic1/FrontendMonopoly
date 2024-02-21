@@ -1,44 +1,55 @@
-<div class="add-player">
-    <h2>Players in the game:</h2>
-    <br>
-    <form (submit)="agregarJugador(nombreJugador.value, colorSeleccionado.value, $event)">
-      <input type="text" #nombreJugador placeholder="Name of the player">
-      <br><br>
-      <select #colorSeleccionado>
-        <option value="yellow">Yellow</option>
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-        <option value="red">Red</option>
-        <option value="orange">Orange</option>
-        <option value="black">Black</option>
-        <option value="brown">Brown</option>
-        <option value="pink">Pink</option>
-      </select>
-      <br><br>
-      <button type="submit" [disabled]="numeroJugadores >= maximoJugadores">Add player</button>
-    </form>
-    @if (numeroJugadores=== maximoJugadores) {
-      <p>You mustn't add more players.</p>
-    }
-    @if (numeroJugadores===minimoJugadores) {
-      <p>You must add at least 1 player.</p>
-    }
 
-    @if (jugadores.length > 0) 
-    {
-        <table>
-            <tr>
-              <th>Name</th>
-              <th>Color</th>
-              <th>Action</th>
-            </tr>
-            <tr *ngFor="let jugador of jugadores; let i = index">
-              <td>{{ jugador.nombre }}</td>
-              <td [style.background-color]="jugador.color"></td>
-              <td><button class="delete-btn" (click)="eliminarJugador(i)">Delete</button></td>
-            </tr>
-          </table>
-    }
-    
+<div class="add-player">
+  <h2>Players in the game:</h2>
+  <br>
+  <form (submit)="agregarJugador(nombreJugador.value, colorSeleccionado.value, $event)">
+    <input type="text" #nombreJugador placeholder="Name of the player">
+    <br><br>
+    <select #colorSeleccionado>
+      <option *ngFor="let color of coloresDisponibles" [value]="color">{{ color }}</option>
+    </select>
+    <br><br>
+    <button type="submit" [disabled]="numeroJugadores >= maximoJugadores">Add player</button>
+  </form>
+  <p *ngIf="numeroJugadores=== maximoJugadores">You cannot add more players.</p>
+  <p *ngIf="numeroJugadores===minimoJugadores">You must add at least 2 players.</p>
+
+  <table *ngIf="jugadores.length > 0">
+    <tr>
+      <th>Name</th>
+      <th>Color</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let jugador of jugadores; let i = index">
+      <td>{{ jugador.nombre }}</td>
+      <td [style.background-color]="jugador.color"></td>
+      <td><button class="delete-btn" (click)="eliminarJugador(i)">Delete</button></td>
+    </tr>
+  </table>
+  <br>
+  <div *ngIf="mostrarBotonJugar">
+    <button (click)="jugarPartida()">Jugar partida</button>
   </div>
-  
+  <br>
+  <button *ngIf="mostrarResetButton" (click)="resetear()">Reset table</button>
+</div>
+
+<div *ngIf="mostrarDivPartida" class="game-div">
+  <h3 class="game-div-idGame">Partida #{{ numeroPartida }}</h3>
+  <h4>Players:</h4>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Color</th>
+    </tr>
+    <tr *ngFor="let jugador of jugadoresParaDiv; let i = index">
+      <td>{{ jugador.nombre }}</td>
+      <td [style.background-color]="jugador.color"></td>
+    </tr>
+  </table>
+  <br>
+  <a class="toPlay" [routerLink]= "['/tablero']" (click)="irTablero()">Jugar</a><br><br> 
+  <button *ngIf="esAdmin" (click)="eliminarPartidaGuardada()">Eliminar Partida Guardada</button>
+</div>
+
+<button id="modo-btn" (click)="toggleAdminMode()">Modo Admin: {{ esAdmin ? 'On' : 'Off' }}</button>

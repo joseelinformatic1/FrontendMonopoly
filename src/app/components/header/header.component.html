@@ -1,32 +1,28 @@
 <nav>
-    <div class="container">
-      <a class="menu" href="#">Menu</a>
-      <div class="navbar-container" id="">
-        <ul>
+  <div class="container">
+    <a class="menu name" routerLink="/home" href="/home" >𝑀𝑜𝓃𝑜𝓅𝑜𝓁𝓎<img src="assets/img/icon.png" width="50px"></a>
+    <div class="navbar-container" id="">
+      <ul>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" href="/home">𝐻𝑜𝓂𝑒</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/add-player']" routerLinkActive="router-link-active">𝒢𝒶𝓂𝑒𝓈</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/profile" href="/profile">𝒫𝓇𝑜𝒻𝒾𝓁𝑒</a>
+        </li>
+        @if (esAdmin) {
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Games</a>
-          </li>
-          <li class="nav-item">
-  
-            <a class="nav-link" routerLink="/profile" href="/profile">Profile</a>
-  
-          </li>
-          @if (usersListVisible) {
-            <li class="nav-item">
-                <a class="nav-link" href="#">Users</a>
-              </li>
-          }
-          <li class="nav-item">
-          @if(!isLoggedIn){
-            <a class="nav-link register" routerLink="/login" href="/login">Log In/Register</a>
-          }
-         
-           
-        </ul>
-        <button id="modo-btn" (click)="toggleAdminMode()">Modo Admin: {{ usersListVisible ? 'On' : 'Off' }}</button>
-      </div>
+              <a class="nav-link" href="#">𝒰𝓈𝑒𝓇𝓈</a>
+            </li>
+        }
+        <li class="nav-item">
+          <a class="nav-link register" routerLink="/login" href="/login">𝐿𝑜𝑔 𝐼𝓃/𝑅𝑒𝑔𝒾𝓈𝓉𝑒𝓇</a>
+        </li>
+      </ul>
+      <button id="modo-btn" (click)="toggleAdminMode()">Modo Admin: {{ esAdmin ? 'On' : 'Off' }}</button>
     </div>
-  </nav>
+  </div>
+
+</nav>
