@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { StorageService } from './storage.service';
 
 
-const AUTH_API = 'http://localhost:8090/auth/';
+const AUTH_API = 'http://13.69.154.63:8090/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
