@@ -5,7 +5,7 @@ import { UserPayload } from '../interfaces/UserPayload';
 import { StorageService } from './storage.service';
 
 catchError
-const API_URL = 'http://localhost:8090/api/v1';
+const API_URL = 'http://13.69.154.63:8090/api/v1';
 
 @Injectable({
   providedIn: 'root',
