@@ -1,0 +1,11 @@
+{
+  "routes": [
+    "/add-player",
+    "/admin",
+    "/home",
+    "/login",
+    "/profile",
+    "/tablero",
+    "/user"
+  ]
+}
